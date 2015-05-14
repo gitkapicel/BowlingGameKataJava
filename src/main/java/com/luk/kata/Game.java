@@ -5,7 +5,7 @@ public class Game {
 	private int score = 0;
 	
 	public void roll(int points) {
-		score=score+points;
+		score+=points;
 		
 	}
 	
