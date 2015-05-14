@@ -11,7 +11,7 @@ public class BowlingGameKataTest {
  	public void gameWithoutPoints() {
 		Game g = new Game();
 		
-		rollAFewTimes(g,0);
+		rollAFewTimes(g,0,20);
 		assertThat( g.score() , is(0) );
 		
 	
@@ -20,13 +20,23 @@ public class BowlingGameKataTest {
 	@Test
  	public void gameWith20Points() {
 		Game g = new Game();
-		rollAFewTimes(g,1);
+		rollAFewTimes(g,1,20);
 		assertThat(g.score(), is(20));
 	}
 	
-	public void rollAFewTimes(Game game , int points)
+	@Test
+ 	public void gameWithOneSpare() {
+		Game g = new Game();
+		g.roll(5);
+		g.roll(5); //spare
+		g.roll(3);
+		rollAFewTimes(g,0,17);
+		assertThat(g.score(), is(16));
+	}
+	
+	public void rollAFewTimes(Game game , int points, int n)
 	{
-		for (int i =0; i<20; i++) {
+		for (int i =0; i<n; i++) {
 			game.roll(points);
 			
 		}
