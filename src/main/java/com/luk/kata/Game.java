@@ -14,19 +14,19 @@ public class Game {
 		int score = 0;
 		int i =0;
 		for(int frame = 0; frame < 10; frame++){
-		if( rolls[ i ] == 10 ){ // strike
-		    score += 10 + rolls[ i + 1 ] + rolls[ i + 2 ];
-		    i ++;
+			if( isStrike(i) ){ // strike
+				score += 10 + strikeBonus(i);
+			i ++;
 		
 		}
 		else if(isSpare(i)) //spare
 		{
-			score += 10 + rolls[i+2];
+			score += 10 + spareBonus(i);
 			i+=2;
 		}
 		else
 		{
-			score += rolls[i] + rolls[i+1];
+			score +=  sumOfBallsInFrame(i);
 			i+=2;
 		}
 	}
@@ -35,6 +35,22 @@ public class Game {
 	
 	private boolean isSpare(int frameIndex){
 		return rolls[frameIndex] + rolls[frameIndex+1] == 10;
+	}
+	
+	private boolean isStrike(int frameIndex){
+		return rolls[frameIndex] == 10;
+	}
+	
+	private int strikeBonus(int frameIndex){
+		return rolls[frameIndex + 1]  + rolls[ frameIndex + 2 ];
+	}
+	
+	private int spareBonus(int frameIndex){
+		return rolls[ frameIndex + 2 ];
+	}
+	
+	private int sumOfBallsInFrame(int frameIndex) {
+		return rolls[frameIndex] + rolls[frameIndex+1];
 	}
 	
 }
