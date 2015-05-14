@@ -14,18 +14,23 @@ public class Game {
 		int score = 0;
 		int i =0;
 		for(int frame = 0; frame < 10; frame++){
-			if(isSpare(i)) //spare
-			{
-				score += 10 + rolls[i+2];
-				i+=2;
-			}
-			else
-			{
-				score += rolls[i] + rolls[i+1];
-				i+=2;
-			}
+		if( rolls[ i ] == 10 ){ // strike
+		    score += 10 + rolls[ i + 1 ] + rolls[ i + 2 ];
+		    i ++;
+		
 		}
-		return score;
+		else if(isSpare(i)) //spare
+		{
+			score += 10 + rolls[i+2];
+			i+=2;
+		}
+		else
+		{
+			score += rolls[i] + rolls[i+1];
+			i+=2;
+		}
+	}
+	return score;
 	}
 	
 	private boolean isSpare(int frameIndex){
