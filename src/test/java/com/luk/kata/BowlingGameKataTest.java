@@ -44,6 +44,14 @@ public class BowlingGameKataTest {
 		assertThat(g.score(), is(24));
 	}
 	
+	
+	@Test
+	  public void PerfectGame(){
+		Game g = new Game();
+		rollAFewTimes(g,10,12);
+		assertThat(g.score(), is(300));
+	}
+	
 	public void rollAFewTimes(Game game , int points, int n)
 	{
 		for (int i =0; i<n; i++) {
